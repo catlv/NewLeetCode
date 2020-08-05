@@ -8,12 +8,14 @@ public class T_44_ReverseSentence {
         if (str.trim().length() == 0) {
             return str;
         }
-        String[] word = str.split(" ");
+        String[] word = str.trim().split(" ");
         StringBuilder res = new StringBuilder();
-        for (int i = word.length - 1; i > 0; i--) {
+        for (int i = word.length - 1; i >= 0; i--) {
+            if (word[i].equals("")) {
+                continue;
+            }
             res.append(word[i]).append(" "); //注意写法
         }
-        res.append(word[0]);
-        return res.toString();
+        return res.toString().trim();
     }
 }

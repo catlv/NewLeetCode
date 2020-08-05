@@ -5,21 +5,25 @@ package topic101_200;
  */
 public class LC137 {
     public int singleNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
         int res = 0;
-        //i代表第几位
+        //i代表第几位，由于int最大为2的31次方，所以总共有32位
         for (int i = 0; i < 32; i++) {
-            //每一位上1的个数
+            //count求的是此时位置上1的个数
             int count = 0;
+            //最开始要求二进制中第一个位置1的个数，所以通过和 0001 进行与操作来得到
+            //第二个位置就要和 0010 进行与操作才行，所以是 1<<i
+            int index = 1 << i;
             for (int n : nums) {
-                //数组中的数n的二进制的第i位是否为1
-                if ((n >> i & 1) == 1) {
+                if ((index & n) != 0) {
                     count++;
                 }
             }
-            //整列的1的个数是否是3的倍数，不是的话就将res二进制的这位置下标设为1
-            if (count % 3 != 0) {
-                //此处先计算的 1 << i 。 表示将res的第i位置为1
-                res = res | 1 << i;
+            //如果1的个数除以3的余数为1，表示此时遇到的就是只出现一次的那个数，这个数此时二进制位置的数就为1
+            if (count % 3 == 1) {
+                res |= index;
             }
         }
         return res;

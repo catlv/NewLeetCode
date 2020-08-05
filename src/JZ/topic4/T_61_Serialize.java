@@ -19,10 +19,8 @@ public class T_61_Serialize {
         if (root == null) {
             return "#,";
         }
-        StringBuffer res = new StringBuffer(root.val + ",");
-        res.append(Serialize(root.left));
-        res.append(Serialize(root.right));
-        return res.toString();
+        return root.val + "," + Serialize(root.left) +
+                Serialize(root.right);
     }
 
     //反序列化
@@ -42,7 +40,7 @@ public class T_61_Serialize {
         }
         TreeNode head = null;
         if (value != null) {
-            head = new TreeNode(Integer.valueOf(value));
+            head = new TreeNode(Integer.parseInt(value));
             head.left = recon(queue);
             head.right = recon(queue);
         }
@@ -50,12 +48,3 @@ public class T_61_Serialize {
     }
 }
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    public TreeNode(int val) {
-        this.val = val;
-    }
-}

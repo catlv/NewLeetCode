@@ -10,20 +10,20 @@ public class T_35_InversePairs {
         if (array == null || array.length == 0) {
             return 0;
         }
-        mergeSort(array, 0, array.length - 1);
+        merge(array, 0, array.length - 1);
         return count;
     }
 
-    private void mergeSort(int[] array, int l, int r) {
+    private void merge(int[] array, int l, int r) {
         if (l < r) {  //不能省
             int mid = l + ((r - l) >> 1);
-            mergeSort(array, l, mid);
-            mergeSort(array, mid + 1, r);
-            merge(array, l, mid, r);
+            merge(array, l, mid);
+            merge(array, mid + 1, r);
+            mergeSort(array, l, mid, r);
         }
     }
 
-    private void merge(int[] array, int l, int mid, int r) {
+    private void mergeSort(int[] array, int l, int mid, int r) {
         int[] help = new int[r - l + 1];
         int i = 0;
         int p1 = l;

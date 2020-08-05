@@ -9,26 +9,25 @@ import java.util.ArrayList;
 
 public class T_33_GetUglyNum {
     public int GetUglyNumber_Solution(int index) {
-        if (index == 0) {
-            return 0;
+        int a = 0, b = 0, c = 0;
+        int[] dp = new int[index];
+        dp[0] = 1;
+        for (int i = 1; i < index; i++) {
+            int n2 = dp[a] * 2;
+            int n3 = dp[b] * 3;
+            int n5 = dp[c] * 5;
+            dp[i] = Math.min(n2, Math.min(n3, n5));
+            if (dp[i] == n2) {
+                a++;
+            }
+            if (dp[i] == n3) {
+                b++;
+            }
+            if (dp[i] == n5) {
+                c++;
+            }
         }
-        int[] res = new int[index + 1];
-        int count = 0, i2 = 0, i3 = 0, i5 = 0;
-        res[0] = 1;
-        while (count < index) {
-            int temp = Math.min(res[i2] * 2, Math.min(res[i3] * 3, res[i5] * 5));
-            if (temp == res[i2] * 2) {
-                i2++;
-            }
-            if (temp == res[i3] * 3) {
-                i3++;
-            }
-            if (temp == res[i5] * 5) {
-                i5++;
-            }
-            res[++count] = temp;
-        }
-        return res[index - 1];
+        return dp[index - 1];
     }
 
     //用链表。由于是查找第index个丑数，所以用数组效率会更高

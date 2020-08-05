@@ -6,6 +6,12 @@ package JZ.topic3;
  */
 public class T_43_LeftRotateString {
     public String LeftRotateString(String str, int n) {
+        if (str.length() == 0)
+            return str;
+        return str.substring(n) + str.substring(0, n);
+    }
+
+    public String LeftRotateString2(String str, int n) {
         if (str == null || str.length() == 0) {
             return "";
         }
@@ -22,17 +28,5 @@ public class T_43_LeftRotateString {
             c[i] = c[j];
             c[j] = a;
         }
-    }
-
-    public String LeftRotateString2(String str, int n) {
-        int len = str.length();
-        if (len == 0) {
-            return str;
-        }
-        n %= len;
-        //字符串分割，尾部不包括
-        String s1 = str.substring(0, n);
-        String s2 = str.substring(n, len);
-        return s2 + s1;
     }
 }

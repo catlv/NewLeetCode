@@ -7,6 +7,7 @@ import java.util.List;
  *
  */
 public class T_03_数组中的重复数字 {
+    //原题目要求返回的是int
     public int findRepeatNumber(int[] nums) {
         for (int i = 0; i < nums.length; i++) {
             while (nums[i] != i) {
@@ -21,6 +22,7 @@ public class T_03_数组中的重复数字 {
         return -1;
     }
 
+    //返回的是List
     public List<Integer> findRepeatNumber2(int[] nums) {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
@@ -40,7 +42,7 @@ public class T_03_数组中的重复数字 {
     public static void main(String[] args) {
         T_03_数组中的重复数字 t = new T_03_数组中的重复数字();
         int[] nums = {2, 2, 3, 3};
-        List<Integer> res = t.findRepeatNumber2(nums);
+        int res = t.findRepeatNumber(nums);
         System.out.println(res);
     }
 }
